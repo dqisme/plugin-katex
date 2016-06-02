@@ -18,12 +18,12 @@ module.exports = {
         math: {
             shortcuts: {
                 parsers: ["markdown", "asciidoc", "restructuredtext"],
-                start: "$$",
-                end: "$$"
+                start: "$",
+                end: "$"
             },
             process: function(blk) {
                 var tex = blk.body;
-                var isInline = !(tex[0] == "\n");
+                var isInline = !(tex[0] === "$" && tex[tex.length-1] === "$");
                 var output = katex.renderToString(tex, {
                     displayMode: !isInline
                 });
